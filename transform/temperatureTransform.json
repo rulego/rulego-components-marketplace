@@ -1,0 +1,32 @@
+{
+  "ruleChain": {
+    "id": "temperatureTransform",
+    "name": "温度转换",
+    "additionalInfo": {
+      "category": "custom",
+      "icon": "custom-node",
+      "description": "this a test component",
+      "author": "admin",
+      "version": "1.0.0",
+      "relationTypes": ["Success","Failure"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scaleFactor": {
+            "type": "number",
+            "title": "换算系数",
+            "default": 1.8
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "nodes": [{
+      "type": "jsTransform",
+      "configuration": {
+        "jsScript": "msg.temperature = msg.temperature * ${vars.scaleFactor} + 32; return {'msg':msg,'metadata':metadata,'msgType':msgType};"
+      }
+    }]
+  }
+}
